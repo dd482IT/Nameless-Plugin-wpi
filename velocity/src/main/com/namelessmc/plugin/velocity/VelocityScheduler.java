@@ -11,30 +11,30 @@ import java.util.concurrent.TimeUnit;
 
 public class VelocityScheduler extends AbstractScheduler {
 
-	private final @NonNull VelocityNamelessPlugin plugin;
-	private final @NonNull Scheduler scheduler;
+	private final VelocityNamelessPlugin plugin;
+	private final Scheduler scheduler;
 
-	VelocityScheduler(final @NonNull VelocityNamelessPlugin plugin,
-					  final @NonNull Scheduler scheduler) {
+	VelocityScheduler(final VelocityNamelessPlugin plugin,
+					  final Scheduler scheduler) {
 		this.plugin = plugin;
 		this.scheduler = scheduler;
 	}
 
 	@Override
-	public void runAsync(final @NonNull Runnable runnable) {
+	public void runAsync(final Runnable runnable) {
 		this.scheduler
 				.buildTask(this.plugin, runnable)
 				.schedule();
 	}
 
 	@Override
-	public void runSync(final @NonNull Runnable runnable) {
+	public void runSync(final Runnable runnable) {
 		// Velocity has no "main thread", we can just run it in the current thread
 		runnable.run();
 	}
 
 	@Override
-	public @NonNull VelocityScheduledTask runTimer(@NonNull Runnable runnable, @NonNull Duration interval) {
+	public VelocityScheduledTask runTimer(Runnable runnable, Duration interval) {
 		final ScheduledTask task = this.scheduler
 				.buildTask(this.plugin, runnable)
 				.delay(interval.toNanos(), TimeUnit.NANOSECONDS)
@@ -44,7 +44,7 @@ public class VelocityScheduler extends AbstractScheduler {
 	}
 
 	@Override
-	public @NonNull VelocityScheduledTask runDelayed(@NonNull Runnable runnable, @NonNull Duration delay) {
+	public VelocityScheduledTask runDelayed(Runnable runnable, Duration delay) {
 		final ScheduledTask task = this.scheduler
 				.buildTask(this.plugin, runnable)
 				.delay(delay.toNanos(), TimeUnit.NANOSECONDS)
@@ -54,9 +54,9 @@ public class VelocityScheduler extends AbstractScheduler {
 
 	public static class VelocityScheduledTask extends AbstractScheduledTask {
 
-		private final @NonNull ScheduledTask task;
+		private final ScheduledTask task;
 
-		private VelocityScheduledTask(final @NonNull ScheduledTask task) {
+		private VelocityScheduledTask(final ScheduledTask task) {
 			this.task = task;
 		}
 

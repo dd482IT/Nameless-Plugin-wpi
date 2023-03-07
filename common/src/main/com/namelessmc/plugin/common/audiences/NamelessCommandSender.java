@@ -9,18 +9,18 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 public abstract class NamelessCommandSender implements Audience {
 
-	private final @NonNull Audience audience;
+	private final Audience audience;
 
-	public NamelessCommandSender(final @NonNull Audience audience) {
+	public NamelessCommandSender(final Audience audience) {
 		this.audience = audience;
 	}
 
 	public abstract boolean hasPermission(Permission permission);
 
 	@Override
-	public void sendMessage(final @NonNull Identity source,
-							final @NonNull Component message,
-							final @NonNull MessageType type) {
+	public void sendMessage(final Identity source,
+							final Component message,
+							final MessageType type) {
 		this.audience.sendMessage(source, message, type);
 	}
 

@@ -16,7 +16,7 @@ import static com.namelessmc.plugin.common.LanguageHandler.Term.*;
 
 public class NamelessPluginCommand extends CommonCommand {
 
-	public NamelessPluginCommand(final @NonNull NamelessPlugin plugin) {
+	public NamelessPluginCommand(final NamelessPlugin plugin) {
 		super(
 				plugin,
 				"plugin",
@@ -31,7 +31,7 @@ public class NamelessPluginCommand extends CommonCommand {
 	}
 
 	@Override
-	public void execute(final @NonNull NamelessCommandSender sender, final @NonNull String@NonNull[] args) {
+	public void execute(final NamelessCommandSender sender, final String[] args) {
 		if (args.length == 1) {
 			switch(args[0]) {
 				case "reload":
@@ -60,7 +60,7 @@ public class NamelessPluginCommand extends CommonCommand {
 	}
 
 	@Override
-	public List<String> complete(@NonNull NamelessCommandSender sender, @NonNull String @NonNull [] args) {
+	public List<String> complete(NamelessCommandSender sender, String[] args) {
 		if (args.length == 1) {
 			return Arrays.stream(new String[]{"reload", "rl", "last_api_error"}).filter(s -> s.startsWith(args[0])).collect(Collectors.toList());
 		}

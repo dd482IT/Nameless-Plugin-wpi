@@ -31,14 +31,14 @@ public class NamelessPlugin {
 			new ArrayList<>()
 	);
 	private final List<AbstractPermissions> permissionAdapters = new ArrayList<>();
-	private @Nullable AbstractPermissions chosenPermissionAdapter;
+	private AbstractPermissions chosenPermissionAdapter;
 
 	private AbstractAudienceProvider audienceProvider;
 
 	public NamelessPlugin(final Path dataDirectory,
 						  final AbstractScheduler scheduler,
 						  final Function<ConfigurationHandler, AbstractLogger> loggerInstantiator,
-						  final @Nullable Path logPath,
+						  final Path logPath,
 						  final String platformInternalName,
 						  final String platformVersion) {
 		this.scheduler = scheduler;
@@ -120,11 +120,11 @@ public class NamelessPlugin {
 		return this.eventBus;
 	}
 
-	public @Nullable AbstractPermissions permissions() {
+	public AbstractPermissions permissions() {
 		return this.chosenPermissionAdapter;
 	}
 
-	public void setAudienceProvider(final @NonNull AbstractAudienceProvider audienceProvider) {
+	public void setAudienceProvider(final AbstractAudienceProvider audienceProvider) {
 		this.audienceProvider = audienceProvider;
 	}
 

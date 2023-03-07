@@ -18,10 +18,10 @@ import java.nio.file.Path;
 
 public abstract class BukkitNamelessPlugin extends JavaPlugin {
 
-	private @Nullable MaintenanceStatusProvider maintenanceStatusProvider;
-	public @Nullable MaintenanceStatusProvider getMaintenanceStatusProvider() { return this.maintenanceStatusProvider; }
+	private MaintenanceStatusProvider maintenanceStatusProvider;
+	public MaintenanceStatusProvider getMaintenanceStatusProvider() { return this.maintenanceStatusProvider; }
 
-	protected final @NonNull NamelessPlugin plugin;
+	protected final NamelessPlugin plugin;
 
 	private final PapiHook papiHook;
 
@@ -63,7 +63,7 @@ public abstract class BukkitNamelessPlugin extends JavaPlugin {
 
 	protected abstract void configureAudiences();
 
-	public abstract void kickPlayer(final @NonNull Player player, final LanguageHandler.@NonNull Term term);
+	public abstract void kickPlayer(final Player player, final LanguageHandler.Term term);
 
 	public PapiHook papi() {
 		return this.papiHook;

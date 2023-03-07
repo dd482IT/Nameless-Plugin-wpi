@@ -17,13 +17,9 @@ import org.spongepowered.api.plugin.Plugin;
 
 import java.nio.file.Path;
 
-@Plugin(id = "namelessmc",
-		name = "NamelessMC",
-		version = MavenConstants.PROJECT_VERSION,
-		description = "Integration with NamelessMC websites")
 public class SpongeNamelessPlugin {
 
-	private final @NonNull NamelessPlugin plugin;
+	private final NamelessPlugin plugin;
 
 	@Inject
 	public SpongeNamelessPlugin(final @NonNull SpongeAudiences audiences,
@@ -43,13 +39,11 @@ public class SpongeNamelessPlugin {
 		Sponge.getEventManager().registerListeners(this, new SpongeEventProxy(this.plugin));
 	}
 
-	@Listener
 	public void onServerStart(final GameStartedServerEvent event) {
 		this.plugin.load();
 		SpongeCommandProxy.registerCommands(this.plugin, this);
 	}
 
-	@Listener
 	public void reload(final GameReloadEvent event) {
 		this.plugin.unload();
 		this.plugin.load();

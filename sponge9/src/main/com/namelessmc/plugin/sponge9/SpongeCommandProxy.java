@@ -100,7 +100,7 @@ public class SpongeCommandProxy {
 		}
 
 		@Override
-		public Optional<Component> help(final @NonNull CommandCause cause) {
+		public Optional<Component> help(final CommandCause cause) {
 			return Raw.super.help(cause);
 		}
 

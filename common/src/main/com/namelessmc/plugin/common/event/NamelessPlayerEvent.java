@@ -5,14 +5,14 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class NamelessPlayerEvent extends NamelessOfflinePlayerEvent {
 
-	private final @NonNull NamelessPlayer player;
+	private final NamelessPlayer player;
 
-	public NamelessPlayerEvent(final @NonNull NamelessPlayer player) {
+	public NamelessPlayerEvent(final NamelessPlayer player) {
 		super(player.uuid());
 		this.player = player;
 	}
 
-	public @NonNull NamelessPlayer player() {
+	public NamelessPlayer player() {
 		return this.player;
 	}
 

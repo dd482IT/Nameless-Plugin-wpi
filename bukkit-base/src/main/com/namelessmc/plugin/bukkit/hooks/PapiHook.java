@@ -37,17 +37,17 @@ public class PapiHook implements Reloadable, Listener {
 
 	private final BukkitNamelessPlugin bukkitPlugin;
 	private final NamelessPlugin plugin;
-	private @Nullable AbstractScheduledTask task;
-	private @Nullable AtomicBoolean isRunning;
-	private @Nullable Expansion placeholderExpansion;
+	private AbstractScheduledTask task;
+	private AtomicBoolean isRunning;
+	private Expansion placeholderExpansion;
 	private BiFunction<Player, String, String> placeholderParser = new NoopParser();
 
-	private @Nullable Map<UUID, Integer> cachedNotificationCount;
-	private @Nullable Map<UUID, Integer> cachedStoreCredits;
-	private @Nullable StorePayment cachedLastStorePayment;
+	private Map<UUID, Integer> cachedNotificationCount;
+	private Map<UUID, Integer> cachedStoreCredits;
+	private StorePayment cachedLastStorePayment;
 
-	public PapiHook(final @NonNull BukkitNamelessPlugin bukkitPlugin,
-							 final @NonNull NamelessPlugin plugin) {
+	public PapiHook(final BukkitNamelessPlugin bukkitPlugin,
+							 final NamelessPlugin plugin) {
 		this.bukkitPlugin = bukkitPlugin;
 		this.plugin = plugin;
 	}
@@ -157,7 +157,6 @@ public class PapiHook implements Reloadable, Listener {
 		}
 	}
 
-	@EventHandler(priority = EventPriority.MONITOR)
 	public void onJoin(final PlayerQuitEvent event) {
 		if (cachedNotificationCount == null) {
 			this.plugin.logger().severe("On join event called while placeholder caching disabled");
@@ -178,7 +177,6 @@ public class PapiHook implements Reloadable, Listener {
 		});
 	}
 
-	@EventHandler(priority = EventPriority.MONITOR)
 	public void onQuit(final PlayerQuitEvent event) {
 		if (cachedNotificationCount == null) {
 			this.plugin.logger().severe("On quit event called while placeholder caching disabled");
@@ -195,7 +193,7 @@ public class PapiHook implements Reloadable, Listener {
 	private class Expansion extends PlaceholderExpansion {
 
 		@Override
-		public @Nullable String onPlaceholderRequest(final Player player, final String identifier) {
+		public String onPlaceholderRequest(final Player player, final String identifier) {
 			switch(identifier) {
 				case "notifications":
 					if (player == null ||
@@ -230,17 +228,17 @@ public class PapiHook implements Reloadable, Listener {
 		}
 
 		@Override
-		public @NonNull String getAuthor() {
+		public String getAuthor() {
 			return "Derkades";
 		}
 
 		@Override
-		public @NonNull String getIdentifier() {
+		public String getIdentifier() {
 			return "nameless";
 		}
 
 		@Override
-		public @NonNull String getVersion() {
+		public String getVersion() {
 			return MavenConstants.PROJECT_VERSION;
 		}
 

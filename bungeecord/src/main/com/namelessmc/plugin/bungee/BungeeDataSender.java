@@ -8,7 +8,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class BungeeDataSender extends AbstractDataSender {
 
-	public BungeeDataSender(final @NonNull NamelessPlugin plugin) {
+	public BungeeDataSender(final NamelessPlugin plugin) {
 		super(plugin);
 	}
 

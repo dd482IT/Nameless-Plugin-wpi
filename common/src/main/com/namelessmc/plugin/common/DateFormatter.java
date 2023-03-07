@@ -10,7 +10,7 @@ public class DateFormatter implements Reloadable {
 
 	private final ConfigurationHandler config;
 
-	private @Nullable DateFormat formatter;
+	private DateFormat formatter;
 
 	DateFormatter(final ConfigurationHandler config) {
 		this.config = config;

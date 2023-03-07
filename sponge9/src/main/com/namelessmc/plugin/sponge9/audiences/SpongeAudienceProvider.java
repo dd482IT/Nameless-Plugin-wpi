@@ -19,16 +19,16 @@ public class SpongeAudienceProvider extends AbstractAudienceProvider {
 	public SpongeAudienceProvider() {}
 
 	@Override
-	public @NotNull NamelessConsole console() {
+	public NamelessConsole console() {
 		return new SpongeNamelessConsole();
 	}
 
 	@Override
-	public @NotNull Audience broadcast() {
+	public Audience broadcast() {
 		return Sponge.server().broadcastAudience();
 	}
 
-	private @Nullable NamelessPlayer spongeToNamelessPlayer(final Optional<ServerPlayer> optionalPlayer) {
+	private NamelessPlayer spongeToNamelessPlayer(final Optional<ServerPlayer> optionalPlayer) {
 		if (optionalPlayer.isPresent()) {
 			final ServerPlayer player = optionalPlayer.get();
 			return new SpongeNamelessPlayer(player);
@@ -37,17 +37,17 @@ public class SpongeAudienceProvider extends AbstractAudienceProvider {
 	}
 
 	@Override
-	public @Nullable NamelessPlayer player(final @NotNull UUID uuid) {
+	public NamelessPlayer player(final UUID uuid) {
 		return spongeToNamelessPlayer(Sponge.server().player(uuid));
 	}
 
 	@Override
-	public @Nullable NamelessPlayer playerByUsername(final @NotNull String username) {
+	public NamelessPlayer playerByUsername(final String username) {
 		return spongeToNamelessPlayer(Sponge.server().player(username));
 	}
 
 	@Override
-	public @NotNull Collection<@NotNull NamelessPlayer> onlinePlayers() {
+	public Collection<NamelessPlayer> onlinePlayers() {
 		return Sponge.server().onlinePlayers().stream()
 				.map(SpongeNamelessPlayer::new)
 				.collect(Collectors.toUnmodifiableList());

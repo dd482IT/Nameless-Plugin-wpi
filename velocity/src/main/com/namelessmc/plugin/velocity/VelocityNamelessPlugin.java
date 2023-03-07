@@ -16,17 +16,11 @@ import org.slf4j.Logger;
 
 import java.nio.file.Path;
 
-@Plugin(id = "namelessmc",
-		name = "NamelessMC",
-		version = MavenConstants.PROJECT_VERSION,
-		url = "https://plugin.namelessmc.com/",
-		description = "Integration with NamelessMC websites",
-		authors = {"Derkades"})
 public class VelocityNamelessPlugin {
 
-	private final Metrics.@NonNull Factory metricsFactory;
-	private final @NonNull ProxyServer server;
-	private final @NonNull NamelessPlugin plugin;
+	private final Metrics.Factory metricsFactory;
+	private final ProxyServer server;
+	private final NamelessPlugin plugin;
 
 	@Inject
 	public VelocityNamelessPlugin(final @NonNull ProxyServer server,
@@ -47,7 +41,6 @@ public class VelocityNamelessPlugin {
 		this.plugin.registerReloadable(new VelocityDataSender(this.plugin));
 	}
 
-	@Subscribe
 	public void onProxyInitialization(final ProxyInitializeEvent event) {
 		this.plugin.load();
 		this.server.getEventManager().register(this, new VelocityEventProxy(this.plugin));
@@ -57,7 +50,6 @@ public class VelocityNamelessPlugin {
 
 	// TODO call unload() when proxy server shuts down
 
-	@Subscribe
 	public void onReload(final ProxyReloadEvent event) {
 		this.plugin.unload();
 		this.plugin.load();

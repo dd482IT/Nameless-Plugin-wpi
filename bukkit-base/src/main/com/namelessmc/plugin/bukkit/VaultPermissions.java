@@ -19,7 +19,7 @@ public class VaultPermissions extends AbstractPermissions {
 
 	private final NamelessPlugin plugin;
 
-	private @Nullable Permission permission;
+	private Permission permission;
 
 	public VaultPermissions(final NamelessPlugin plugin) {
 		this.plugin = plugin;
@@ -74,7 +74,7 @@ public class VaultPermissions extends AbstractPermissions {
 	}
 
 	@Override
-	public Set<String> getPlayerGroups(final @NonNull NamelessPlayer player) {
+	public Set<String> getPlayerGroups(final NamelessPlayer player) {
 		if (this.permission == null) {
 			throw new ProviderNotUsableException();
 		}

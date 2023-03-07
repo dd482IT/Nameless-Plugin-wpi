@@ -8,7 +8,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class OldBukkitDataSender extends BukkitDataSender {
 
-    protected OldBukkitDataSender(@NonNull NamelessPlugin plugin, @NonNull BukkitNamelessPlugin bukkitPlugin) {
+    protected OldBukkitDataSender(NamelessPlugin plugin, BukkitNamelessPlugin bukkitPlugin) {
         super(plugin, bukkitPlugin);
     }
 

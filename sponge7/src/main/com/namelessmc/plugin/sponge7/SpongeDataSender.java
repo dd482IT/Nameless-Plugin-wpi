@@ -6,7 +6,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class SpongeDataSender extends AbstractDataSender {
 
-	protected SpongeDataSender(@NonNull NamelessPlugin plugin) {
+	protected SpongeDataSender(NamelessPlugin plugin) {
 		super(plugin);
 	}
 

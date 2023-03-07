@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class SpongeDataSender extends AbstractDataSender {
 
-	protected SpongeDataSender(@NotNull NamelessPlugin plugin) {
+	protected SpongeDataSender(NamelessPlugin plugin) {
 		super(plugin);
 	}
 

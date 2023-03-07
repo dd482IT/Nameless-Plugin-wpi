@@ -10,33 +10,33 @@ import java.time.Duration;
 
 public class BukkitScheduler extends AbstractScheduler {
 
-	private final @NonNull BukkitNamelessPlugin plugin;
+	private final BukkitNamelessPlugin plugin;
 
-	BukkitScheduler(final @NonNull BukkitNamelessPlugin plugin) {
+	BukkitScheduler(final BukkitNamelessPlugin plugin) {
 		this.plugin = plugin;
 	}
 
 	@Override
-	public void runAsync(final @NonNull Runnable runnable) {
+	public void runAsync(final Runnable runnable) {
 		Bukkit.getScheduler().runTaskAsynchronously(this.plugin, runnable);
 	}
 
 	@Override
-	public void runSync(final @NonNull Runnable runnable) {
+	public void runSync(final Runnable runnable) {
 		Bukkit.getScheduler().runTask(this.plugin, runnable);
 	}
 
 	@Override
-	public BukkitScheduledTask runTimer(final @NonNull Runnable runnable,
-																 final @NonNull Duration interval) {
+	public BukkitScheduledTask runTimer(final Runnable runnable,
+																 final Duration interval) {
 		long ticks = interval.toMillis() / 50;
 		final BukkitTask task = Bukkit.getScheduler().runTaskTimer(this.plugin, runnable, ticks, ticks);
 		return new BukkitScheduledTask(task);
 	}
 
 	@Override
-	public BukkitScheduledTask runDelayed(final @NonNull Runnable runnable,
-																   final @NonNull Duration delay) {
+	public BukkitScheduledTask runDelayed(final Runnable runnable,
+																   final Duration delay) {
 		long ticks = delay.toMillis() / 50;
 		final BukkitTask task = Bukkit.getScheduler().runTaskLater(this.plugin, runnable, ticks);
 		return new BukkitScheduledTask(task);
@@ -44,9 +44,9 @@ public class BukkitScheduler extends AbstractScheduler {
 
 	public static class BukkitScheduledTask extends AbstractScheduledTask {
 
-		private final @NonNull BukkitTask task;
+		private final BukkitTask task;
 
-		private BukkitScheduledTask(final @NonNull BukkitTask task) {
+		private BukkitScheduledTask(final BukkitTask task) {
 			this.task = task;
 		}
 

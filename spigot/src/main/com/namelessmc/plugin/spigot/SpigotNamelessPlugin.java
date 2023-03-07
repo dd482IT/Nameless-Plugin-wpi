@@ -20,8 +20,8 @@ public class SpigotNamelessPlugin extends BukkitNamelessPlugin {
 	}
 
 	@Override
-	public void kickPlayer(final @NonNull Player player,
-						   final LanguageHandler.@NonNull Term term) {
+	public void kickPlayer(final Player player,
+						   final LanguageHandler.Term term) {
 		final String legacyMessage = LegacyComponentSerializer.legacySection().serialize(
 				this.plugin.language().get(term));
 		player.kickPlayer(legacyMessage);

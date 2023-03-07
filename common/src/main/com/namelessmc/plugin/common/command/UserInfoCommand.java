@@ -24,7 +24,7 @@ import static com.namelessmc.plugin.common.LanguageHandler.Term.*;
 
 public class UserInfoCommand extends CommonCommand {
 
-	public UserInfoCommand(final @NonNull NamelessPlugin plugin) {
+	public UserInfoCommand(final NamelessPlugin plugin) {
 		super(plugin,
 				"user-info",
 				COMMAND_USERINFO_USAGE,
@@ -33,7 +33,7 @@ public class UserInfoCommand extends CommonCommand {
 	}
 
 	@Override
-	public void execute(final @NonNull NamelessCommandSender sender, final @NonNull String@NonNull[] args) {
+	public void execute(final NamelessCommandSender sender, final String[] args) {
 		if (args.length == 0 && sender instanceof NamelessPlayer) {
 			// No username specified, try to find NamelessMC account for this Minecraft player
 			this.scheduler().runAsync(() -> {
@@ -209,7 +209,7 @@ public class UserInfoCommand extends CommonCommand {
 	}
 
 	@Override
-	public List<String> complete(@NonNull NamelessCommandSender sender, @NonNull String @NonNull [] args) {
+	public List<String> complete(NamelessCommandSender sender, String[] args) {
 		if (args.length == 1) {
 			return this.plugin().userCache().usernamesSearch(args[0]);
 		}

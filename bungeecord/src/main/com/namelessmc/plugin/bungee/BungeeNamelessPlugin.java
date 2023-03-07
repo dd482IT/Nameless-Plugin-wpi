@@ -12,7 +12,7 @@ import java.nio.file.Path;
 
 public class BungeeNamelessPlugin extends Plugin {
 
-	private final @NonNull NamelessPlugin plugin;
+	private final NamelessPlugin plugin;
 
 	public BungeeNamelessPlugin() {
 		Path dataDirectory = this.getDataFolder().toPath();

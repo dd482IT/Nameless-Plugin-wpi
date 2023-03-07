@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 
 public class OldBukkitAudienceProvider extends AbstractAudienceProvider {
 
-	private void dispatchCommand(final @NonNull String command) {
+	private void dispatchCommand(final String command) {
 		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
 	}
 
 	@Override
-	public @NonNull NamelessConsole console() {
+	public NamelessConsole console() {
 		return new BukkitNamelessConsole(new LegacyCommandSenderAudience(Bukkit.getConsoleSender()));
 	}
 
@@ -35,14 +35,14 @@ public class OldBukkitAudienceProvider extends AbstractAudienceProvider {
 		return Audience.audience(audiences);
 	}
 
-	public @Nullable NamelessPlayer bukkitToNamelessPlayer(final Player bukkitPlayer) {
+	public NamelessPlayer bukkitToNamelessPlayer(final Player bukkitPlayer) {
 		return bukkitPlayer == null
 				? null
 				: new OldBukkitNamelessPlayer(bukkitPlayer);
 	}
 
 	@Override
-	public @Nullable NamelessPlayer player(@NonNull UUID uuid) {
+	public NamelessPlayer player(UUID uuid) {
 		for (Player player : Bukkit.getOnlinePlayers()) {
 			if (player.getUniqueId().equals(uuid)) {
 				return bukkitToNamelessPlayer(player);
@@ -52,12 +52,12 @@ public class OldBukkitAudienceProvider extends AbstractAudienceProvider {
 	}
 
 	@Override
-	public @Nullable NamelessPlayer playerByUsername(String username) {
+	public NamelessPlayer playerByUsername(String username) {
 		return bukkitToNamelessPlayer(Bukkit.getPlayerExact(username));
 	}
 
 	@Override
-	public @NonNull Collection<@NonNull NamelessPlayer> onlinePlayers() {
+	public Collection<NamelessPlayer> onlinePlayers() {
 		return Arrays.stream(Bukkit.getOnlinePlayers())
 				.map(OldBukkitNamelessPlayer::new)
 				.collect(Collectors.toUnmodifiableList());

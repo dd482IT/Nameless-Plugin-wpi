@@ -24,11 +24,11 @@ import static com.namelessmc.plugin.common.LanguageHandler.Term.USER_SYNC_KICK;
 
 public class UserSyncTask implements Runnable, Reloadable {
 
-	private final @NonNull NamelessPlugin plugin;
-	private final @NonNull BukkitNamelessPlugin bukkitPlugin;
-	private @Nullable AbstractScheduledTask task;
+	private final NamelessPlugin plugin;
+	private final BukkitNamelessPlugin bukkitPlugin;
+	private AbstractScheduledTask task;
 
-	UserSyncTask(final @NonNull NamelessPlugin plugin, final @NonNull BukkitNamelessPlugin bukkitPlugin) {
+	UserSyncTask(final NamelessPlugin plugin, final BukkitNamelessPlugin bukkitPlugin) {
 		this.plugin = plugin;
 		this.bukkitPlugin = bukkitPlugin;
 	}
@@ -73,7 +73,7 @@ public class UserSyncTask implements Runnable, Reloadable {
 		}
 	}
 
-	private @Nullable Set<UUID> getUuids(final @NonNull Consumer<@NonNull FilteredUserListBuilder> builderConfigurator) {
+	private Set<UUID> getUuids(final Consumer<FilteredUserListBuilder> builderConfigurator) {
 		final CommentedConfigurationNode config = this.plugin.config().main().node("user-sync");
 		final AbstractLogger logger = this.plugin.logger();
 
@@ -119,7 +119,7 @@ public class UserSyncTask implements Runnable, Reloadable {
 		return uuids;
 	}
 
-	private void syncBans(final @Nullable Runnable onComplete) {
+	private void syncBans(final Runnable onComplete) {
 		final AbstractLogger logger = this.plugin.logger();
 		logger.fine("Starting bans sync, retrieving list of banned users...");
 		this.plugin.scheduler().runAsync(() -> {

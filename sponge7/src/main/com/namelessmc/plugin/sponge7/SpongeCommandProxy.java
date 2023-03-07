@@ -39,8 +39,8 @@ public class SpongeCommandProxy {
 
 			CommandCallable spongeCommand = new CommandCallable() {
 				@Override
-				public @NonNull CommandResult process(final @NonNull CommandSource source,
-													  final @NonNull String arguments) {
+				public CommandResult process(final CommandSource source,
+													  final String arguments) {
 					String[] args = arguments.split(" ");
 					final NamelessCommandSender namelessCommandSender;
 					if (source instanceof Player) {
@@ -58,9 +58,9 @@ public class SpongeCommandProxy {
 				}
 
 				@Override
-				public List<String> getSuggestions(final @NonNull CommandSource source,
-												   final @NonNull String arguments,
-												   final @Nullable Location<World> targetPosition) {
+				public List<String> getSuggestions(final CommandSource source,
+												   final String arguments,
+												   final Location<World> targetPosition) {
 					return Collections.emptyList();
 				}
 
@@ -70,17 +70,17 @@ public class SpongeCommandProxy {
 				}
 
 				@Override
-				public Optional<Text> getShortDescription(final @NonNull CommandSource source) {
+				public Optional<Text> getShortDescription(final CommandSource source) {
 					return Optional.of(description);
 				}
 
 				@Override
-				public Optional<Text> getHelp(final @NonNull CommandSource source) {
+				public Optional<Text> getHelp(final CommandSource source) {
 					return Optional.empty();
 				}
 
 				@Override
-				public Text getUsage(final @NonNull CommandSource source) {
+				public Text getUsage(final CommandSource source) {
 					return usage;
 				}
 			};

@@ -17,32 +17,32 @@ import java.util.Map;
 
 public class ConfigurationHandler implements Reloadable {
 
-	private static final @NonNull String[] ALL_CONFIG_NAMES = {
+	private static final String[] ALL_CONFIG_NAMES = {
 			"commands",
 			"main",
 			"modules",
 	};
 
-	private final @NonNull Path dataDirectory;
-	private final @NonNull Map<String, CommentedConfigurationNode> configs = new HashMap<>();
+	private final Path dataDirectory;
+	private final Map<String, CommentedConfigurationNode> configs = new HashMap<>();
 
-	public ConfigurationHandler(final @NonNull Path dataDirectory) {
+	public ConfigurationHandler(final Path dataDirectory) {
 		this.dataDirectory = dataDirectory;
 	}
 
-	public @NonNull CommentedConfigurationNode commands() {
+	public CommentedConfigurationNode commands() {
 		return this.getConfig("commands");
 	}
 
-	public @NonNull CommentedConfigurationNode main() {
+	public CommentedConfigurationNode main() {
 		return this.getConfig("main");
 	}
 
-	public @NonNull CommentedConfigurationNode modules() {
+	public CommentedConfigurationNode modules() {
 		return this.getConfig("modules");
 	}
 
-	private @NonNull CommentedConfigurationNode getConfig(final String name) {
+	private CommentedConfigurationNode getConfig(final String name) {
 		final CommentedConfigurationNode config = this.configs.get(name);
 		if (config == null) {
 			throw new IllegalStateException(name + " config requested before it was loaded");
@@ -71,13 +71,13 @@ public class ConfigurationHandler implements Reloadable {
 		}
 	}
 
-	private CommentedConfigurationNode copyFromJarAndLoad(final @NonNull String name) throws IOException {
+	private CommentedConfigurationNode copyFromJarAndLoad(final String name) throws IOException {
 		Path path = dataDirectory.resolve(name);
 		FileUtils.copyOutOfJar(ConfigurationHandler.class, name, path);
 		return YamlConfigurationLoader.builder().path(path).build().load();
 	}
 
-	public static @Nullable Duration getDuration(final ConfigurationNode node) {
+	public static Duration getDuration(final ConfigurationNode node) {
 		String string = node.getString();
 		if (string == null) {
 			return null;

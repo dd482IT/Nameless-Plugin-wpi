@@ -17,12 +17,12 @@ import static com.namelessmc.plugin.common.LanguageHandler.Term.JOIN_NOT_REGISTE
 
 public class JoinNotRegisteredMessage implements Reloadable {
 
-	private final @NonNull NamelessPlugin plugin;
+	private final NamelessPlugin plugin;
 
-	private @Nullable EventSubscription subscription;
-	private @Nullable String registerCommand;
+	private EventSubscription subscription;
+	private String registerCommand;
 
-	JoinNotRegisteredMessage(final @NonNull NamelessPlugin plugin) {
+	JoinNotRegisteredMessage(final NamelessPlugin plugin) {
 		this.plugin = plugin;
 	}
 
@@ -55,7 +55,7 @@ public class JoinNotRegisteredMessage implements Reloadable {
 				onJoin(event.player().uuid()));
 	}
 
-	private void onJoin(final @NonNull UUID uuid) {
+	private void onJoin(final UUID uuid) {
 		String registerCommand = this.registerCommand;
 		if (registerCommand == null) {
 			throw new IllegalStateException("Register command cannot be null");

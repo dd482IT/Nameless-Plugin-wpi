@@ -13,7 +13,7 @@ public class SyncBanToWebsite implements Reloadable {
 
 	private final NamelessPlugin plugin;
 
-	private @Nullable EventSubscription subscription;
+	private EventSubscription subscription;
 
 	SyncBanToWebsite(final NamelessPlugin plugin) {
 		this.plugin = plugin;

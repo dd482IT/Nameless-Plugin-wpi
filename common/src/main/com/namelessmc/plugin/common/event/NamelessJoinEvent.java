@@ -5,13 +5,13 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class NamelessJoinEvent extends NamelessEvent {
 
-	private final @NonNull NamelessPlayer player;
+	private final NamelessPlayer player;
 
-	public NamelessJoinEvent(final @NonNull NamelessPlayer player) {
+	public NamelessJoinEvent(final NamelessPlayer player) {
 		this.player = player;
 	}
 
-	public @NonNull NamelessPlayer player() {
+	public NamelessPlayer player() {
 		return this.player;
 	}
 

@@ -6,13 +6,13 @@ import java.util.UUID;
 
 public class NamelessOfflinePlayerEvent extends NamelessEvent {
 
-	private final @NonNull UUID uuid;
+	private final UUID uuid;
 
-	public NamelessOfflinePlayerEvent(final @NonNull UUID uuid) {
+	public NamelessOfflinePlayerEvent(final UUID uuid) {
 		this.uuid = uuid;
 	}
 
-	public @NonNull UUID uuid() {
+	public UUID uuid() {
 		return this.uuid;
 	}
 

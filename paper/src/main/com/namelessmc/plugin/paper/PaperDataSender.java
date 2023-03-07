@@ -15,7 +15,7 @@ import java.net.URL;
 
 public class PaperDataSender extends BukkitDataSender {
 
-	protected PaperDataSender(@NonNull NamelessPlugin plugin, @NonNull PaperNamelessPlugin bukkitPlugin) {
+	protected PaperDataSender(NamelessPlugin plugin, PaperNamelessPlugin bukkitPlugin) {
 		super(plugin, bukkitPlugin);
 	}
 

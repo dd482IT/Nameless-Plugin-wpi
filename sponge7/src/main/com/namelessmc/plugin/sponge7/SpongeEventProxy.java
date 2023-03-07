@@ -10,13 +10,12 @@ import org.spongepowered.api.event.network.ClientConnectionEvent;
 
 public class SpongeEventProxy {
 
-	private final @NonNull NamelessPlugin plugin;
+	private final NamelessPlugin plugin;
 
-	SpongeEventProxy(final @NonNull NamelessPlugin plugin) {
+	SpongeEventProxy(final NamelessPlugin plugin) {
 		this.plugin = plugin;
 	}
 
-	@Listener
 	public void onJoin(ClientConnectionEvent.Join event) {
 		final NamelessPlayer player = plugin.audiences().player(event.getTargetEntity().getUniqueId());
 		if (player == null) {
@@ -28,7 +27,6 @@ public class SpongeEventProxy {
 		this.plugin.events().post(event2);
 	}
 
-	@Listener
 	public void onQuit(ClientConnectionEvent.Disconnect event) {
 		final NamelessPlayerQuitEvent event2 = new NamelessPlayerQuitEvent(event.getTargetEntity().getUniqueId());
 		this.plugin.events().post(event2);

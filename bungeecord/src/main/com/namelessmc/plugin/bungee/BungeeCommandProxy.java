@@ -22,7 +22,7 @@ public class BungeeCommandProxy {
 
 			Command bungeeCommand = new Command(name, permission) {
 				@Override
-				public void execute(final @NonNull CommandSender bungeeSender, final String[] args) {
+				public void execute(final CommandSender bungeeSender, final String[] args) {
 					final NamelessCommandSender sender;
 					if (bungeeSender instanceof ProxiedPlayer) {
 						sender = plugin.audiences().player(((ProxiedPlayer) bungeeSender).getUniqueId());

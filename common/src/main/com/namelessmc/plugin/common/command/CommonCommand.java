@@ -19,17 +19,17 @@ import static com.namelessmc.plugin.common.LanguageHandler.Term.COMMAND_NO_PERMI
 
 public abstract class CommonCommand {
 
-	private final @NonNull NamelessPlugin plugin;
-	private final LanguageHandler.@NonNull Term usageTerm;
-	private final LanguageHandler.@NonNull Term descriptionTerm;
-	private final @NonNull Permission permission;
-	private final @Nullable String actualName;
+	private final NamelessPlugin plugin;
+	private final LanguageHandler.Term usageTerm;
+	private final LanguageHandler.Term descriptionTerm;
+	private final Permission permission;
+	private final String actualName;
 
-	public CommonCommand(final @NonNull NamelessPlugin plugin,
-						 final @NonNull String configName,
-						 final LanguageHandler.@NonNull Term usageTerm,
-						 final LanguageHandler.@NonNull Term descriptionTerm,
-						 final @NonNull Permission permission) {
+	public CommonCommand(final NamelessPlugin plugin,
+						 final String configName,
+						 final LanguageHandler.Term usageTerm,
+						 final LanguageHandler.Term descriptionTerm,
+						 final Permission permission) {
 		this.plugin = plugin;
 		this.usageTerm = usageTerm;
 		this.descriptionTerm = descriptionTerm;
@@ -38,7 +38,7 @@ public abstract class CommonCommand {
 		this.actualName = config.node(configName).getString();
 	}
 
-	public @Nullable String actualName(@UnknownInitialization(CommonCommand.class) CommonCommand this) {
+	public String actualName(CommonCommand this) {
 		return this.actualName;
 	}
 
@@ -53,29 +53,29 @@ public abstract class CommonCommand {
 		return this.language().get(this.descriptionTerm);
 	}
 
-	public @NonNull Permission permission() {
+	public Permission permission() {
 		return this.permission;
 	}
 
-	protected @NonNull NamelessPlugin plugin() {
+	protected NamelessPlugin plugin() {
 		return this.plugin;
 	}
 
-	protected @NonNull AbstractScheduler scheduler() {
+	protected AbstractScheduler scheduler() {
 		return this.plugin.scheduler();
 	}
 
-	protected @NonNull LanguageHandler language() {
+	protected LanguageHandler language() {
 		return this.plugin.language();
 	}
 
-	protected @NonNull ApiProvider apiProvider() {
+	protected ApiProvider apiProvider() {
 		return this.plugin.apiProvider();
 	}
 
-	protected @NonNull AbstractLogger logger() { return this.plugin.logger(); }
+	protected AbstractLogger logger() { return this.plugin.logger(); }
 
-	protected abstract void execute(final @NonNull NamelessCommandSender sender, final @NonNull String@NonNull[] args);
+	protected abstract void execute(final NamelessCommandSender sender, final String[] args);
 
 	public void verifyPermissionThenExecute(NamelessCommandSender sender, String[] args) {
 		if (!sender.hasPermission(this.permission)) {
@@ -86,11 +86,11 @@ public abstract class CommonCommand {
 		this.execute(sender, args);
 	}
 
-	public List<String> complete(final @NonNull NamelessCommandSender sender, final @NonNull String@NonNull[] args) {
+	public List<String> complete(final NamelessCommandSender sender, final String[] args) {
 		return Collections.emptyList();
 	}
 
-	public static List<CommonCommand> commands(final @NonNull NamelessPlugin plugin) {
+	public static List<CommonCommand> commands(final NamelessPlugin plugin) {
 		return List.of(
 				new GetNotificationsCommand(plugin),
 				new NamelessPluginCommand(plugin),

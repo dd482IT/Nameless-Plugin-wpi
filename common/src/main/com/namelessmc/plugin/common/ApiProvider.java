@@ -28,16 +28,16 @@ public class ApiProvider implements Reloadable {
 
 	private Tristate<NamelessAPI> cachedApi;
 
-	private @Nullable URL apiUrl;
-	private @Nullable String apiKey;
+	private URL apiUrl;
+	private String apiKey;
 	private boolean debug;
-	private @Nullable Duration timeout;
+	private Duration timeout;
 	private boolean bypassVersionCheck;
 	private boolean forceHttp1;
 
-	public ApiProvider(final @NonNull AbstractScheduler scheduler,
-					   final @NonNull AbstractLogger logger,
-					   final @NonNull ConfigurationHandler config) {
+	public ApiProvider(final AbstractScheduler scheduler,
+					   final AbstractLogger logger,
+					   final ConfigurationHandler config) {
 		this.scheduler = scheduler;
 		this.logger = logger;
 		this.config = config;
@@ -82,7 +82,7 @@ public class ApiProvider implements Reloadable {
 	}
 
 	@Deprecated
-	public @Nullable String isApiWorkingMetric() {
+	public String isApiWorkingMetric() {
 		if (!this.cachedApi.known()) {
 			// In theory the API should always be cached, but in case it's not we
 			// do not want to force load it because that would affect server performance.
@@ -92,7 +92,7 @@ public class ApiProvider implements Reloadable {
 		return this.cachedApi.present() ? "Working" : "Not working";
 	}
 
-	public synchronized @Nullable NamelessAPI api() {
+	public synchronized NamelessAPI api() {
 		if (this.cachedApi.known()) {
 			return this.cachedApi.value();
 		}
@@ -148,7 +148,7 @@ public class ApiProvider implements Reloadable {
 		return this.cachedApi.value();
 	}
 
-	public @Nullable NamelessAPI apiIfCached() {
+	public NamelessAPI apiIfCached() {
 		return this.cachedApi.present() ? this.cachedApi.value() : null;
 	}
 

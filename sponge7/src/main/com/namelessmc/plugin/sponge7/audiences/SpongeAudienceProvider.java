@@ -17,26 +17,26 @@ import java.util.stream.Collectors;
 
 public class SpongeAudienceProvider extends AbstractAudienceProvider {
 
-	private final @NonNull SpongeAudiences audiences;
-	private final @NonNull Server server;
+	private final SpongeAudiences audiences;
+	private final Server server;
 
-	public SpongeAudienceProvider(final @NonNull SpongeAudiences audiences,
-						   final @NonNull Server server) {
+	public SpongeAudienceProvider(final SpongeAudiences audiences,
+						   final Server server) {
 		this.audiences = audiences;
 		this.server = server;
 	}
 
 	@Override
-	public @NonNull NamelessConsole console() {
+	public NamelessConsole console() {
 		return new SpongeNamelessConsole(this.audiences);
 	}
 
 	@Override
-	public @NonNull Audience broadcast() {
+	public Audience broadcast() {
 		return this.audiences.all();
 	}
 
-	private @Nullable NamelessPlayer spongeToNamelessPlayer(final Optional<Player> optionalPlayer) {
+	private NamelessPlayer spongeToNamelessPlayer(final Optional<Player> optionalPlayer) {
 		if (optionalPlayer.isPresent()) {
 			final Player player = optionalPlayer.get();
 			return new SpongeNamelessPlayer(this.audiences, player);
@@ -45,17 +45,17 @@ public class SpongeAudienceProvider extends AbstractAudienceProvider {
 	}
 
 	@Override
-	public @Nullable NamelessPlayer player(@NonNull UUID uuid) {
+	public NamelessPlayer player(UUID uuid) {
 		return spongeToNamelessPlayer(this.server.getPlayer(uuid));
 	}
 
 	@Override
-	public @Nullable NamelessPlayer playerByUsername(@NonNull String username) {
+	public NamelessPlayer playerByUsername(String username) {
 		return spongeToNamelessPlayer(this.server.getPlayer(username));
 	}
 
 	@Override
-	public @NonNull Collection<@NonNull NamelessPlayer> onlinePlayers() {
+	public Collection<NamelessPlayer> onlinePlayers() {
 		return this.server.getOnlinePlayers().stream()
 				.map(p -> new SpongeNamelessPlayer(this.audiences, p))
 				.collect(Collectors.toUnmodifiableList());

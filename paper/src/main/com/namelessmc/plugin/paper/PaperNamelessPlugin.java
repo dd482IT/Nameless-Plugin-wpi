@@ -21,7 +21,7 @@ public class PaperNamelessPlugin extends BukkitNamelessPlugin {
 	}
 
 	@Override
-	public void kickPlayer(final @NonNull Player player, final LanguageHandler.@NonNull Term term) {
+	public void kickPlayer(final Player player, final LanguageHandler.Term term) {
 		player.kick(this.plugin.language().get(term));
 	}
 

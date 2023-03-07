@@ -21,22 +21,22 @@ import java.util.*;
 
 public abstract class AbstractDataSender implements Runnable, Reloadable {
 
-	private final @NonNull NamelessPlugin plugin;
-	private @Nullable AbstractScheduledTask dataSenderTask;
-	private @Nullable List<@NonNull InfoProvider> globalInfoProviders;
-	private @Nullable List<@NonNull PlayerInfoProvider> playerInfoProviders;
+	private final NamelessPlugin plugin;
+	private AbstractScheduledTask dataSenderTask;
+	private List<InfoProvider> globalInfoProviders;
+	private List<PlayerInfoProvider> playerInfoProviders;
 	private int serverId;
-	private @Nullable Duration configuredInterval;
+	private Duration configuredInterval;
 
-	private final @NonNull Map<UUID, Long> playerLoginTime = new HashMap<>();
+	private final Map<UUID, Long> playerLoginTime = new HashMap<>();
 
-	protected AbstractDataSender(final @NonNull NamelessPlugin plugin) {
+	protected AbstractDataSender(final NamelessPlugin plugin) {
 		this.plugin = plugin;
 
 		this.startLoginTimeTracking();
 	}
 
-	private void startLoginTimeTracking(@UnknownInitialization(AbstractDataSender.class) AbstractDataSender this) {
+	private void startLoginTimeTracking(AbstractDataSender this) {
 		this.plugin.registerReloadable(new Reloadable() {
 		   @Override
 		   public void unload() {}
@@ -59,7 +59,7 @@ public abstract class AbstractDataSender implements Runnable, Reloadable {
 				playerLoginTime.remove(event.uuid()));
 	}
 
-	protected @NonNull NamelessPlugin getPlugin() {
+	protected NamelessPlugin getPlugin() {
 		return this.plugin;
 	}
 
@@ -102,7 +102,7 @@ public abstract class AbstractDataSender implements Runnable, Reloadable {
 		this.registerCustomProviders();
 	}
 
-	private @NonNull JsonObject buildJsonBody() {
+	private JsonObject buildJsonBody() {
 		final List<InfoProvider> globalInfoProviders = this.globalInfoProviders;
 		final List<PlayerInfoProvider> playerInfoProviders = this.playerInfoProviders;
 
@@ -226,14 +226,14 @@ public abstract class AbstractDataSender implements Runnable, Reloadable {
 	@FunctionalInterface
 	public interface InfoProvider {
 
-		void addInfoToJson(final @NonNull JsonObject json);
+		void addInfoToJson(final JsonObject json);
 
 	}
 
 	@FunctionalInterface
 	public interface PlayerInfoProvider {
 
-		void addInfoToJson(final @NonNull JsonObject json, final @NonNull NamelessPlayer player);
+		void addInfoToJson(final JsonObject json, final NamelessPlayer player);
 
 	}
 

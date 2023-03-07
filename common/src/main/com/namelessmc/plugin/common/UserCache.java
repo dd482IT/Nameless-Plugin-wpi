@@ -17,7 +17,7 @@ public class UserCache implements Reloadable {
 
 	private final NamelessPlugin plugin;
 
-	private @Nullable AbstractScheduledTask task;
+	private AbstractScheduledTask task;
 	private List<String> usernames = Collections.emptyList();
 	private List<String> minecraftUsernames = Collections.emptyList();
 

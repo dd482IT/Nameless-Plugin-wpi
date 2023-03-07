@@ -16,11 +16,11 @@ import static com.namelessmc.plugin.common.LanguageHandler.Term.JOIN_NOTIFICATIO
 
 public class JoinNotificationsMessage implements Reloadable {
 
-	private final @NonNull NamelessPlugin plugin;
+	private final NamelessPlugin plugin;
 
-	private @Nullable EventSubscription subscription;
+	private EventSubscription subscription;
 
-	JoinNotificationsMessage(final @NonNull NamelessPlugin plugin) {
+	JoinNotificationsMessage(final NamelessPlugin plugin) {
 		this.plugin = plugin;
 	}
 
@@ -40,7 +40,7 @@ public class JoinNotificationsMessage implements Reloadable {
 		}
 	}
 
-	private void onJoin(final @NonNull UUID uuid) {
+	private void onJoin(final UUID uuid) {
 		this.plugin.scheduler().runAsync(() -> {
 			final NamelessAPI api = this.plugin.apiProvider().api();
 			if (api == null) {

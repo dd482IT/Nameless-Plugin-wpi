@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class NamelessPlayerQuitEvent extends NamelessOfflinePlayerEvent {
 
-	public NamelessPlayerQuitEvent(final @NonNull UUID uuid) {
+	public NamelessPlayerQuitEvent(final UUID uuid) {
 		super(uuid);
 	}
 

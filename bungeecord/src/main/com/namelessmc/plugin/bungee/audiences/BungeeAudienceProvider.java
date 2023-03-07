@@ -17,40 +17,40 @@ import java.util.stream.Collectors;
 
 public class BungeeAudienceProvider extends AbstractAudienceProvider {
 
-	private final @NonNull BungeeAudiences audiences;
+	private final BungeeAudiences audiences;
 
-	public BungeeAudienceProvider(final @NonNull BungeeNamelessPlugin bungeePlugin) {
+	public BungeeAudienceProvider(final BungeeNamelessPlugin bungeePlugin) {
 		this.audiences = BungeeAudiences.create(bungeePlugin);
 	}
 
 	@Override
-	public @NonNull NamelessConsole console() {
+	public NamelessConsole console() {
 		return new BungeeNamelessConsole(audiences);
 	}
 
 	@Override
-	public @NonNull Audience broadcast() {
+	public Audience broadcast() {
 		return audiences.all();
 	}
 
-	public @Nullable NamelessPlayer bungeeToNamelessPlayer(final ProxiedPlayer bungeePlayer) {
+	public NamelessPlayer bungeeToNamelessPlayer(final ProxiedPlayer bungeePlayer) {
 		return bungeePlayer == null
 				? null
 				: new BungeeNamelessPlayer(this.audiences, bungeePlayer);
 	}
 
 	@Override
-	public @Nullable NamelessPlayer player(@NonNull UUID uuid) {
+	public NamelessPlayer player(UUID uuid) {
 		return bungeeToNamelessPlayer(ProxyServer.getInstance().getPlayer(uuid));
 	}
 
 	@Override
-	public @Nullable NamelessPlayer playerByUsername(@NonNull String username) {
+	public NamelessPlayer playerByUsername(String username) {
 		return bungeeToNamelessPlayer(ProxyServer.getInstance().getPlayer(username));
 	}
 
 	@Override
-	public @NonNull Collection<@NonNull NamelessPlayer> onlinePlayers() {
+	public Collection<NamelessPlayer> onlinePlayers() {
 		return ProxyServer.getInstance().getPlayers().stream()
 				.map(p -> (NamelessPlayer) new BungeeNamelessPlayer(this.audiences, 	p))
 				.collect(Collectors.toUnmodifiableList());

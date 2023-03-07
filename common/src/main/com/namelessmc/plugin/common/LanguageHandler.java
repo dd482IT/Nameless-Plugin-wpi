@@ -179,14 +179,14 @@ public class LanguageHandler implements Reloadable {
 	private ConfigurationNode fallbackLanguageFile;
 	private ConfigurationNode activeLanguageFile;
 
-	private final @NonNull Path dataDirectory;
-	private final @NonNull Path languageDirectory;
-	private final @NonNull ConfigurationHandler config;
-	private final @NonNull AbstractLogger logger;
+	private final Path dataDirectory;
+	private final Path languageDirectory;
+	private final ConfigurationHandler config;
+	private final AbstractLogger logger;
 
-	public LanguageHandler(final @NonNull Path dataDirectory,
-						   final @NonNull ConfigurationHandler config,
-						   final @NonNull AbstractLogger logger) {
+	public LanguageHandler(final Path dataDirectory,
+						   final ConfigurationHandler config,
+						   final AbstractLogger logger) {
 		this.dataDirectory = dataDirectory;
 		this.languageDirectory = dataDirectory.resolve("languages");
 		this.config = config;
@@ -292,12 +292,12 @@ public class LanguageHandler implements Reloadable {
 		this.logger.info("Done");
 	}
 
-	private @NonNull CommentedConfigurationNode readLanguageFile(final @NonNull String languageName) throws IOException {
+	private CommentedConfigurationNode readLanguageFile(final String languageName) throws IOException {
 		final Path path = this.languageDirectory.resolve(languageName + ".yaml");
 		return YamlConfigurationLoader.builder().path(path).build().load();
 	}
 
-	private void setActiveLanguage(final @NonNull String languageCode) throws IOException {
+	private void setActiveLanguage(final String languageCode) throws IOException {
 		if (!LANGUAGES.contains(languageCode)) {
 			this.logger.severe("Language '" + languageCode + "' not known, using default language.");
 			setActiveLanguage(DEFAULT_LANGUAGE);

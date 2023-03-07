@@ -17,7 +17,7 @@ public class SpongeScheduler extends AbstractScheduler {
 	}
 
 	@Override
-	public void runAsync(@NonNull Runnable runnable) {
+	public void runAsync(Runnable runnable) {
 		Task.builder()
 				.execute(runnable)
 				.async()
@@ -25,14 +25,14 @@ public class SpongeScheduler extends AbstractScheduler {
 	}
 
 	@Override
-	public void runSync(@NonNull Runnable runnable) {
+	public void runSync(Runnable runnable) {
 		Task.builder()
 				.execute(runnable)
 				.submit(this.plugin);
 	}
 
 	@Override
-	public @NonNull SpongeScheduledTask runTimer(@NonNull Runnable runnable, @NonNull Duration interval) {
+	public SpongeScheduledTask runTimer(Runnable runnable, Duration interval) {
 		final Task task = Task.builder()
 				.execute(runnable)
 				.delay(interval.toNanos(), TimeUnit.NANOSECONDS)
@@ -42,7 +42,7 @@ public class SpongeScheduler extends AbstractScheduler {
 	}
 
 	@Override
-	public @NonNull SpongeScheduledTask runDelayed(@NonNull Runnable runnable, @NonNull Duration delay) {
+	public SpongeScheduledTask runDelayed(Runnable runnable, Duration delay) {
 		final Task task = Task.builder()
 				.execute(runnable)
 				.delay(delay.toNanos(), TimeUnit.NANOSECONDS)
@@ -52,9 +52,9 @@ public class SpongeScheduler extends AbstractScheduler {
 
 	public static class SpongeScheduledTask extends AbstractScheduledTask {
 
-		private final @NonNull Task task;
+		private final Task task;
 
-		private SpongeScheduledTask(final @NonNull Task task) {
+		private SpongeScheduledTask(final Task task) {
 			this.task = task;
 		}
 

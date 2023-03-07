@@ -20,7 +20,7 @@ public class StoreMenu extends IconMenu {
 
 	private final NamelessPlugin plugin;
 
-	private @Nullable StoreProduct[] productsBySlot;
+	private StoreProduct[] productsBySlot;
 
 	public StoreMenu(Plugin bukkitPlugin, NamelessPlugin plugin, Player player) {
 		super(bukkitPlugin, "Store menu", 3, player);

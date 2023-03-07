@@ -11,26 +11,26 @@ import java.util.concurrent.TimeUnit;
 
 public class BungeeScheduler extends AbstractScheduler {
 
-	private final @NonNull BungeeNamelessPlugin plugin;
+	private final BungeeNamelessPlugin plugin;
 
-	BungeeScheduler(final @NonNull BungeeNamelessPlugin plugin) {
+	BungeeScheduler(final BungeeNamelessPlugin plugin) {
 		this.plugin = plugin;
 	}
 
 	@Override
-	public void runAsync(final @NonNull Runnable runnable) {
+	public void runAsync(final Runnable runnable) {
 		ProxyServer.getInstance().getScheduler()
 				.runAsync(this.plugin, runnable);
 	}
 
 	@Override
-	public void runSync(final @NonNull Runnable runnable) {
+	public void runSync(final Runnable runnable) {
 		ProxyServer.getInstance().getScheduler()
 				.schedule(this.plugin, runnable, 0, TimeUnit.NANOSECONDS);
 	}
 
 	@Override
-	public @NonNull BungeeScheduledTask runTimer(@NonNull Runnable runnable, @NonNull Duration interval) {
+	public BungeeScheduledTask runTimer(Runnable runnable, Duration interval) {
 		long l = interval.toNanos();
 		final ScheduledTask task = ProxyServer.getInstance().getScheduler()
 				.schedule(this.plugin, runnable, l, l, TimeUnit.NANOSECONDS);
@@ -39,7 +39,7 @@ public class BungeeScheduler extends AbstractScheduler {
 
 
 	@Override
-	public @NonNull BungeeScheduledTask runDelayed(@NonNull Runnable runnable, @NonNull Duration delay) {
+	public BungeeScheduledTask runDelayed(Runnable runnable, Duration delay) {
 		long l = delay.toNanos();
 		final ScheduledTask task = ProxyServer.getInstance().getScheduler()
 				.schedule(this.plugin, runnable, l, TimeUnit.NANOSECONDS);
@@ -48,9 +48,9 @@ public class BungeeScheduler extends AbstractScheduler {
 
 	public static class BungeeScheduledTask extends AbstractScheduledTask {
 
-		private final @NonNull ScheduledTask task;
+		private final ScheduledTask task;
 
-		private BungeeScheduledTask(final @NonNull ScheduledTask task) {
+		private BungeeScheduledTask(final ScheduledTask task) {
 			this.task = task;
 		}
 

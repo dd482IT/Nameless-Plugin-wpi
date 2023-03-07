@@ -24,18 +24,18 @@ public class Websend implements Reloadable {
 
 	private static final int SEND_LOG_MAX_BYTES = 50_000;
 
-	private final @NonNull NamelessPlugin plugin;
-	private final @Nullable Path logPath;
+	private final NamelessPlugin plugin;
+	private final Path logPath;
 
-	private @Nullable AbstractScheduledTask commandTask;
+	private AbstractScheduledTask commandTask;
 	private final Object commandLock = new Object();
-	private @Nullable AbstractScheduledTask logTask;
+	private AbstractScheduledTask logTask;
 	private final Object logLock = new Object();
 	private int previousLogSize = 0;
 	private boolean clearPrevious = true;
 
-	Websend(final @NonNull NamelessPlugin plugin,
-			final @Nullable Path logPath) {
+	Websend(final NamelessPlugin plugin,
+			final Path logPath) {
 		this.plugin = plugin;
 		this.logPath = logPath;
 	}

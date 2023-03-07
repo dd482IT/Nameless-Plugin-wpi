@@ -21,7 +21,7 @@ import static com.namelessmc.plugin.common.LanguageHandler.Term.*;
 
 public class ReportCommand extends CommonCommand {
 
-	public ReportCommand(final @NonNull NamelessPlugin plugin) {
+	public ReportCommand(final NamelessPlugin plugin) {
 		super(plugin,
 				"report",
 				COMMAND_REPORT_USAGE,
@@ -30,7 +30,7 @@ public class ReportCommand extends CommonCommand {
 	}
 
 	@Override
-	public void execute(final @NonNull NamelessCommandSender sender, final @NonNull String@NonNull[] args) {
+	public void execute(final NamelessCommandSender sender, final String[] args) {
 		if (args.length < 2) {
 			sender.sendMessage(this.usage());
 			return;
@@ -98,7 +98,7 @@ public class ReportCommand extends CommonCommand {
 	}
 
 	@Override
-	public List<String> complete(@NonNull NamelessCommandSender sender, @NonNull String @NonNull [] args) {
+	public List<String> complete(NamelessCommandSender sender, String[] args) {
 		if (args.length == 1) {
 			return this.plugin().audiences().onlinePlayers().stream()
 					.map(NamelessPlayer::username)

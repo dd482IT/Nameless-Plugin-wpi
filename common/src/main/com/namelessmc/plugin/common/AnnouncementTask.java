@@ -20,11 +20,11 @@ import static com.namelessmc.plugin.common.LanguageHandler.Term.WEBSITE_ANNOUNCE
 
 public class AnnouncementTask implements Runnable, Reloadable {
 
-	private final @NonNull NamelessPlugin plugin;
+	private final NamelessPlugin plugin;
 
-	private @Nullable AbstractScheduledTask task;
+	private AbstractScheduledTask task;
 
-	AnnouncementTask(final @NonNull NamelessPlugin plugin) {
+	AnnouncementTask(final NamelessPlugin plugin) {
 		this.plugin = plugin;
 	}
 
@@ -56,7 +56,7 @@ public class AnnouncementTask implements Runnable, Reloadable {
 		if (api == null) {
 			return;
 		}
-		final @Nullable String filterDisplay = config.node("display").getString();
+		final String filterDisplay = config.node("display").getString();
 		Duration delay = Duration.ZERO;
 		for (final NamelessPlayer player : this.plugin.audiences().onlinePlayers()) {
 			// add delay so requests are spread out a bit

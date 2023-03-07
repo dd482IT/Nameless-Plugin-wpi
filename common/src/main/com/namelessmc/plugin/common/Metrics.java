@@ -30,7 +30,7 @@ public class Metrics implements Reloadable {
 	private final String platformVersion;
 	private final Methanol methanol;
 
-	private @Nullable AbstractScheduledTask task;
+	private AbstractScheduledTask task;
 	private boolean firstStartup = true;
 
 	public Metrics(NamelessPlugin plugin, String platformInternalName, String platformVersion) {

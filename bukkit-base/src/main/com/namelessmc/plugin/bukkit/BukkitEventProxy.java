@@ -18,15 +18,14 @@ import java.util.UUID;
 
 public class BukkitEventProxy implements Listener {
 
-	private final @NonNull NamelessPlugin plugin;
+	private final NamelessPlugin plugin;
 
-	BukkitEventProxy(final @NonNull NamelessPlugin plugin) {
+	BukkitEventProxy(final NamelessPlugin plugin) {
 		this.plugin = plugin;
 	}
 
 
-	@EventHandler(priority = EventPriority.MONITOR)
-	public void onJoin(final @NonNull PlayerJoinEvent event) {
+	public void onJoin(final PlayerJoinEvent event) {
 		final Player bukkitPlayer = event.getPlayer();
 		final NamelessPlayer player = this.plugin.audiences().player(bukkitPlayer.getUniqueId());
 		if (player == null) {
@@ -36,13 +35,11 @@ public class BukkitEventProxy implements Listener {
 		this.plugin.events().post(new NamelessJoinEvent(player));
 	}
 
-	@EventHandler(priority = EventPriority.MONITOR)
-	public void onQuit(final @NonNull PlayerQuitEvent event) {
+	public void onQuit(final PlayerQuitEvent event) {
 		final UUID uuid = event.getPlayer().getUniqueId();
 		this.plugin.events().post(new NamelessPlayerQuitEvent(uuid));
 	}
 
-	@EventHandler(priority = EventPriority.MONITOR)
 	public void onBan(final PlayerKickEvent event) {
 		if (event.getPlayer().isBanned()) {
 			this.plugin.events().post(new NamelessPlayerBanEvent(event.getPlayer().getUniqueId()));

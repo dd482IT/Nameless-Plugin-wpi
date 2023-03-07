@@ -17,7 +17,6 @@ import org.spongepowered.plugin.builtin.jvm.Plugin;
 
 import java.nio.file.Path;
 
-@Plugin("namelessmc")
 public class SpongeNamelessPlugin {
 
 	private final NamelessPlugin plugin;
@@ -41,17 +40,14 @@ public class SpongeNamelessPlugin {
 		Sponge.eventManager().registerListeners(container, new SpongeEventProxy(this.plugin));
 	}
 
-	@Listener
 	public void registerCommands(final RegisterCommandEvent<Command> event) {
 		SpongeCommandProxy.registerCommands(event, this.plugin, this.container);
 	}
 
-	@Listener
 	public void onStarted(final StartedEngineEvent<Server> event) {
 		this.plugin.load();
 	}
 
-	@Listener
 	public void reload(final RefreshGameEvent event) {
 		this.plugin.unload();
 		this.plugin.load();

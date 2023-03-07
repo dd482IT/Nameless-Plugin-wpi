@@ -14,19 +14,19 @@ import java.util.stream.Collectors;
 
 public class VelocityAudienceProvider extends AbstractAudienceProvider {
 
-	private final @NonNull ProxyServer server;
+	private final ProxyServer server;
 
-	public VelocityAudienceProvider(final @NonNull ProxyServer server) {
+	public VelocityAudienceProvider(final ProxyServer server) {
 		this.server = server;
 	}
 
 	@Override
-	public @NonNull NamelessConsole console() {
+	public NamelessConsole console() {
 		return new VelocityNamelessConsole(this.server);
 	}
 
 	@Override
-	public @NonNull Audience broadcast() {
+	public Audience broadcast() {
 		final Collection<Player> players = server.getAllPlayers();
 		final List<Audience> everyone = new ArrayList<>(players.size() + 1);
 		everyone.addAll(players);
@@ -34,7 +34,7 @@ public class VelocityAudienceProvider extends AbstractAudienceProvider {
 		return Audience.audience(everyone);
 	}
 
-	private @Nullable NamelessPlayer velocityToNamelessPlayer(final Optional<Player> optionalPlayer) {
+	private NamelessPlayer velocityToNamelessPlayer(final Optional<Player> optionalPlayer) {
 		if (optionalPlayer.isEmpty()) {
 			return null;
 		}
@@ -44,17 +44,17 @@ public class VelocityAudienceProvider extends AbstractAudienceProvider {
 	}
 
 	@Override
-	public @Nullable NamelessPlayer player(final @NonNull UUID uuid) {
+	public NamelessPlayer player(final UUID uuid) {
 		return velocityToNamelessPlayer(server.getPlayer(uuid));
 	}
 
 	@Override
-	public @Nullable NamelessPlayer playerByUsername(@NonNull String username) {
+	public NamelessPlayer playerByUsername(String username) {
 		return velocityToNamelessPlayer(server.getPlayer(username));
 	}
 
 	@Override
-	public @NonNull Collection<@NonNull NamelessPlayer> onlinePlayers() {
+	public Collection<NamelessPlayer> onlinePlayers() {
 		return server.getAllPlayers().stream()
 				.map(VelocityNamelessPlayer::new)
 				.collect(Collectors.toUnmodifiableList());

@@ -6,7 +6,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class VelocityDataSender extends AbstractDataSender {
 
-	protected VelocityDataSender(final @NonNull NamelessPlugin plugin) {
+	protected VelocityDataSender(final NamelessPlugin plugin) {
 		super(plugin);
 	}
 

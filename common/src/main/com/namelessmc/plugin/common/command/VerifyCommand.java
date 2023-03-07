@@ -16,7 +16,7 @@ import static com.namelessmc.plugin.common.LanguageHandler.Term.*;
 
 public class VerifyCommand extends CommonCommand {
 
-	public VerifyCommand(final @NonNull NamelessPlugin plugin) {
+	public VerifyCommand(final NamelessPlugin plugin) {
 		super(plugin,
 				"verify",
 				COMMAND_VALIDATE_USAGE,
@@ -25,7 +25,7 @@ public class VerifyCommand extends CommonCommand {
 	}
 
 	@Override
-	public void execute(final @NonNull NamelessCommandSender sender, final @NonNull String@NonNull[] args) {
+	public void execute(final NamelessCommandSender sender, final String[] args) {
 		if (args.length != 1) {
 			sender.sendMessage(this.usage());
 			return;

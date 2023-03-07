@@ -23,13 +23,13 @@ public class SpongeScheduler extends AbstractScheduler {
 	}
 
 	@Override
-	public void runAsync(final @NonNull Runnable runnable) {
+	public void runAsync(final Runnable runnable) {
 		// Sponge probably provides an API for async tasks, but I couldn't find it. Use Java ExecutorService instead.
 		executor.submit(runnable);
 	}
 
 	@Override
-	public void runSync(final @NonNull Runnable runnable) {
+	public void runSync(final Runnable runnable) {
 		final Task task = Task.builder()
 				.plugin(spongePlugin)
 				.execute(runnable)
@@ -38,7 +38,7 @@ public class SpongeScheduler extends AbstractScheduler {
 	}
 
 	@Override
-	public @NonNull SpongeScheduledTask runTimer(@NonNull Runnable runnable, @NonNull Duration interval) {
+	public SpongeScheduledTask runTimer(Runnable runnable, Duration interval) {
 		final Task task = Task.builder()
 				.plugin(spongePlugin)
 				.execute(runnable)
@@ -49,7 +49,7 @@ public class SpongeScheduler extends AbstractScheduler {
 	}
 
 	@Override
-	public @NonNull SpongeScheduledTask runDelayed(@NonNull Runnable runnable, @NonNull Duration delay) {
+	public SpongeScheduledTask runDelayed(Runnable runnable, Duration delay) {
 		final Task task = Task.builder()
 				.plugin(spongePlugin)
 				.execute(runnable)

@@ -18,7 +18,7 @@ public class Store implements Reloadable {
 
 	private final NamelessPlugin plugin;
 
-	private @Nullable AbstractScheduledTask commandTask;
+	private AbstractScheduledTask commandTask;
 
 	public Store(NamelessPlugin plugin) {
 		this.plugin = plugin;

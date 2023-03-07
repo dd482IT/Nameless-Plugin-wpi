@@ -18,11 +18,11 @@ import java.util.Objects;
 
 public abstract class BukkitDataSender extends AbstractDataSender {
 
-	private final @NonNull NamelessPlugin plugin;
-	private final @NonNull BukkitNamelessPlugin bukkitPlugin;
+	private final NamelessPlugin plugin;
+	private final BukkitNamelessPlugin bukkitPlugin;
 
-	protected BukkitDataSender(final @NonNull NamelessPlugin plugin,
-							   final @NonNull BukkitNamelessPlugin bukkitPlugin) {
+	protected BukkitDataSender(final NamelessPlugin plugin,
+							   final BukkitNamelessPlugin bukkitPlugin) {
 		super(plugin);
 		this.plugin = plugin;
 		this.bukkitPlugin = bukkitPlugin;

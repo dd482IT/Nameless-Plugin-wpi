@@ -10,13 +10,12 @@ import org.spongepowered.api.event.network.ServerSideConnectionEvent;
 
 public class SpongeEventProxy {
 
-	private final @NotNull NamelessPlugin plugin;
+	private final NamelessPlugin plugin;
 
-	SpongeEventProxy(final @NotNull NamelessPlugin plugin) {
+	SpongeEventProxy(final NamelessPlugin plugin) {
 		this.plugin = plugin;
 	}
 
-	@Listener
 	public void onJoin(ServerSideConnectionEvent.Join event) {
 		final NamelessPlayer player = new SpongeNamelessPlayer(event.player());
 		this.plugin.events().post(new NamelessJoinEvent(player));

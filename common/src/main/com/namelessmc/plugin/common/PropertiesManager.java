@@ -17,7 +17,7 @@ public class PropertiesManager implements Reloadable {
 	private final NamelessPlugin plugin;
 	private final Path propertiesPath;
 	private final Map<String, Supplier<String>> defaultProperties;
-	private @Nullable Properties properties;
+	private Properties properties;
 
 	PropertiesManager(Path propertiesPath, NamelessPlugin plugin) {
 		this.propertiesPath = propertiesPath;

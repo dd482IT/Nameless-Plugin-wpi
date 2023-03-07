@@ -20,14 +20,14 @@ public enum Permission {
 
 	;
 
-	private final @NonNull String permissionString;
+	private final String permissionString;
 
-	Permission(final @NonNull String permissionString){
+	Permission(final String permissionString){
 		this.permissionString = permissionString;
 	}
 
 	@Override
-	public @NonNull String toString() {
+	public String toString() {
 		return this.permissionString;
 	}
 

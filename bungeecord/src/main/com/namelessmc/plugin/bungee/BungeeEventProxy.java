@@ -14,14 +14,13 @@ import java.util.UUID;
 
 public class BungeeEventProxy implements Listener {
 
-	private final @NonNull NamelessPlugin plugin;
+	private final NamelessPlugin plugin;
 
-	BungeeEventProxy(final @NonNull NamelessPlugin plugin) {
+	BungeeEventProxy(final NamelessPlugin plugin) {
 		this.plugin = plugin;
 	}
 
-	@EventHandler
-	public void onJoin(final @NonNull PostLoginEvent event) {
+	public void onJoin(final PostLoginEvent event) {
 		final NamelessPlayer player = plugin.audiences().player(event.getPlayer().getUniqueId());
 		if (player == null) {
 			this.plugin.logger().severe("Skipped join event for player " + event.getPlayer().getName() +
@@ -32,8 +31,7 @@ public class BungeeEventProxy implements Listener {
 		plugin.events().post(event2);
 	}
 
-	@EventHandler
-	public void onQuit(final @NonNull PlayerDisconnectEvent event) {
+	public void onQuit(final PlayerDisconnectEvent event) {
 		final UUID uuid = event.getPlayer().getUniqueId();
 		final NamelessPlayerQuitEvent event2 = new NamelessPlayerQuitEvent(uuid);
 		plugin.events().post(event2);

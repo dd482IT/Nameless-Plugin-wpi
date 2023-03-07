@@ -18,17 +18,17 @@ import java.util.UUID;
 
 public class PaperAudienceProvider extends AbstractAudienceProvider {
 
-	private void dispatchCommand(final @NonNull String command) {
+	private void dispatchCommand(final String command) {
 		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
 	}
 
 	@Override
-	public @NonNull NamelessConsole console() {
+	public NamelessConsole console() {
 		return new BukkitNamelessConsole(Bukkit.getConsoleSender());
 	}
 
 	@Override
-	public @NonNull Audience broadcast() {
+	public Audience broadcast() {
 		final Collection<? extends Player> bukkitPlayers = Bukkit.getOnlinePlayers();
 		final List<Audience> audiences = new ArrayList<>(bukkitPlayers.size() + 1);
 		audiences.addAll(bukkitPlayers);
@@ -44,17 +44,17 @@ public class PaperAudienceProvider extends AbstractAudienceProvider {
 	}
 
 	@Override
-	public @Nullable NamelessPlayer player(@NonNull UUID uuid) {
+	public NamelessPlayer player(UUID uuid) {
 		return bukkitToNamelessPlayer(Bukkit.getPlayer(uuid));
 	}
 
 	@Override
-	public @Nullable NamelessPlayer playerByUsername(@NonNull String username) {
+	public NamelessPlayer playerByUsername(String username) {
 		return bukkitToNamelessPlayer(Bukkit.getPlayerExact(username));
 	}
 
 	@Override
-	public @NonNull Collection<@NonNull NamelessPlayer> onlinePlayers() {
+	public Collection<NamelessPlayer> onlinePlayers() {
 		return Bukkit.getOnlinePlayers().stream()
 				.map(p -> (NamelessPlayer) new BukkitNamelessPlayer(p, p))
 				.toList();

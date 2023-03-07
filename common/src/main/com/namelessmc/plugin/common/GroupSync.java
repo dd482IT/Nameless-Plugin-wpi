@@ -21,7 +21,7 @@ public class GroupSync implements Reloadable {
 
     private final NamelessPlugin plugin;
 
-    private @Nullable AbstractScheduledTask task = null;
+    private AbstractScheduledTask task = null;
 
     GroupSync(final NamelessPlugin plugin) {
         this.plugin = plugin;

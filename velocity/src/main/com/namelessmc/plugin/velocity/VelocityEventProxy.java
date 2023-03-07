@@ -9,14 +9,13 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class VelocityEventProxy {
 
-	private final @NonNull NamelessPlugin plugin;
+	private final NamelessPlugin plugin;
 
-	VelocityEventProxy(final @NonNull NamelessPlugin plugin) {
+	VelocityEventProxy(final NamelessPlugin plugin) {
 		this.plugin = plugin;
 	}
 
-	@Subscribe
-	public void onJoin(final @NonNull ServerConnectedEvent event) {
+	public void onJoin(final ServerConnectedEvent event) {
 		final NamelessPlayer player = this.plugin.audiences().player(event.getPlayer().getUniqueId());
 		if (player == null) {
 			this.plugin.logger().severe("Skipped join event for player " + event.getPlayer().getUsername() +

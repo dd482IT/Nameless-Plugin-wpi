@@ -16,16 +16,16 @@ import java.util.function.Supplier;
 
 public abstract class AbstractLogger implements Reloadable {
 
-	private final @NonNull ApiLogger apiLogger = new ApiLoggerImpl();
-	private final @NonNull ConfigurationHandler config;
+	private final ApiLogger apiLogger = new ApiLoggerImpl();
+	private final ConfigurationHandler config;
 	private boolean verbose;
-	private @Nullable Throwable lastException;
+	private Throwable lastException;
 
-	protected AbstractLogger(final @NonNull ConfigurationHandler config) {
+	protected AbstractLogger(final ConfigurationHandler config) {
 		this.config = config;
 	}
 
-	public @NonNull ApiLogger getApiLogger() {
+	public ApiLogger getApiLogger() {
 		return this.apiLogger;
 	}
 
@@ -118,7 +118,7 @@ public abstract class AbstractLogger implements Reloadable {
 		return false;
 	}
 
-	public @Nullable String getLastExceptionStackTrace() {
+	public String getLastExceptionStackTrace() {
 		return this.lastException != null ? stackTraceAsString(this.lastException) : null;
 	}
 
@@ -145,7 +145,7 @@ public abstract class AbstractLogger implements Reloadable {
 	private class ApiLoggerImpl extends ApiLogger {
 
 		@Override
-		public void log(final @NonNull String string) {
+		public void log(final String string) {
 			AbstractLogger.this.info("[Nameless-Java-API Debug] " + string);
 		}
 

@@ -18,7 +18,7 @@ import static com.namelessmc.plugin.common.LanguageHandler.Term.*;
 
 public class GetNotificationsCommand extends CommonCommand {
 
-	public GetNotificationsCommand(final @NonNull NamelessPlugin plugin) {
+	public GetNotificationsCommand(final NamelessPlugin plugin) {
 		super(plugin,
 				"get-notifications",
 				COMMAND_NOTIFICATIONS_USAGE,
@@ -27,7 +27,7 @@ public class GetNotificationsCommand extends CommonCommand {
 	}
 
 	@Override
-	public void execute(final @NonNull NamelessCommandSender sender, final @NonNull String@NonNull[] args) {
+	public void execute(final NamelessCommandSender sender, final String[] args) {
 		if (args.length != 0) {
 			sender.sendMessage(this.usage());
 			return;

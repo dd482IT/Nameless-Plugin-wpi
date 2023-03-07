@@ -9,10 +9,10 @@ import java.util.function.Supplier;
 
 public class Slf4jLogger extends AbstractLogger {
 
-	private final @NonNull Logger logger;
+	private final Logger logger;
 
-	public Slf4jLogger(final @NonNull ConfigurationHandler config,
-					   final @NonNull Logger logger) {
+	public Slf4jLogger(final ConfigurationHandler config,
+					   final Logger logger) {
 		super(config);
 		this.logger = logger;
 	}

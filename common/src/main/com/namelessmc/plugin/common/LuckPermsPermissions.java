@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class LuckPermsPermissions extends AbstractPermissions {
 
-	private @Nullable LuckPerms api;
+	private LuckPerms api;
 
 	@Override
 	public void unload() {
@@ -44,7 +44,7 @@ public class LuckPermsPermissions extends AbstractPermissions {
 	}
 
 	@Override
-	public @Nullable Set<String> getPlayerGroups(NamelessPlayer player) {
+	public Set<String> getPlayerGroups(NamelessPlayer player) {
 		if (this.api == null) {
 			throw new ProviderNotUsableException();
 		}

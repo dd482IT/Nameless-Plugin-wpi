@@ -8,10 +8,10 @@ import java.util.logging.Logger;
 
 public class JulLogger extends AbstractLogger {
 
-	private final @NonNull Logger logger;
+	private final Logger logger;
 
-	public JulLogger(final @NonNull ConfigurationHandler config,
-					 final @NonNull Logger logger) {
+	public JulLogger(final ConfigurationHandler config,
+					 final Logger logger) {
 		super(config);
 		this.logger = logger;
 	}

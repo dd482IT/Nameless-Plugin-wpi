@@ -8,7 +8,6 @@ import org.spongepowered.plugin.builtin.jvm.Plugin;
 
 import java.nio.file.Path;
 
-@Plugin("namelessmc")
 public class SpongeNamelessPlugin extends com.namelessmc.plugin.sponge9.SpongeNamelessPlugin {
 
 	@Inject

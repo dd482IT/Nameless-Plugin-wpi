@@ -59,7 +59,7 @@ public class BukkitCommandProxy {
 			this.command = command;
 		}
 
-		private @Nullable NamelessCommandSender bukkitToNamelessSender(final CommandSender bukkitCommandSender) {
+		private NamelessCommandSender bukkitToNamelessSender(final CommandSender bukkitCommandSender) {
 			if (bukkitCommandSender instanceof Player) {
 				return this.audiences.player(((Player) bukkitCommandSender).getUniqueId());
 			} else if (bukkitCommandSender instanceof ConsoleCommandSender) {

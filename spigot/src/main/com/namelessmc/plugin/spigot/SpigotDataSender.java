@@ -8,7 +8,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class SpigotDataSender extends BukkitDataSender {
 
-    protected SpigotDataSender(@NonNull NamelessPlugin plugin, @NonNull BukkitNamelessPlugin bukkitPlugin) {
+    protected SpigotDataSender(NamelessPlugin plugin, BukkitNamelessPlugin bukkitPlugin) {
         super(plugin, bukkitPlugin);
     }
 

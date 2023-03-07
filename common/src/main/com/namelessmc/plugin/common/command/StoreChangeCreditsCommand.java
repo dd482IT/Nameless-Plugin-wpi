@@ -16,7 +16,7 @@ import static com.namelessmc.plugin.common.LanguageHandler.Term.COMMAND_STORE_CH
 
 public class StoreChangeCreditsCommand extends CommonCommand {
 
-	public StoreChangeCreditsCommand(final @NonNull NamelessPlugin plugin) {
+	public StoreChangeCreditsCommand(final NamelessPlugin plugin) {
 		super(plugin,
 				"store-change-credits",
 				COMMAND_STORE_CHANGE_CREDITS_USAGE,

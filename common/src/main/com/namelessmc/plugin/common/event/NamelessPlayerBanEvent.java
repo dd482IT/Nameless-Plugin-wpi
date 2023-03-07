@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class NamelessPlayerBanEvent extends NamelessOfflinePlayerEvent {
 
-	public NamelessPlayerBanEvent(final @NonNull UUID uuid) {
+	public NamelessPlayerBanEvent(final UUID uuid) {
 		super(uuid);
 	}
 

@@ -19,44 +19,44 @@ import java.util.stream.Collectors;
 
 public class SpigotAudienceProvider extends AbstractAudienceProvider {
 
-	private final @NonNull BukkitAudiences audiences;
+	private final BukkitAudiences audiences;
 
-	SpigotAudienceProvider(final @NonNull BukkitNamelessPlugin bukkitPlugin) {
+	SpigotAudienceProvider(final BukkitNamelessPlugin bukkitPlugin) {
 		this.audiences = BukkitAudiences.create(bukkitPlugin);
 	}
 
-	private void dispatchCommand(final @NonNull String command) {
+	private void dispatchCommand(final String command) {
 		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
 	}
 
 	@Override
-	public @NonNull NamelessConsole console() {
+	public NamelessConsole console() {
 		return new BukkitNamelessConsole(audiences.console());
 	}
 
 	@Override
-	public @NonNull Audience broadcast() {
+	public Audience broadcast() {
 		return audiences.all();
 	}
 
-	public @Nullable NamelessPlayer bukkitToNamelessPlayer(final Player bukkitPlayer) {
+	public NamelessPlayer bukkitToNamelessPlayer(final Player bukkitPlayer) {
 		return bukkitPlayer == null
 				? null
 				: new BukkitNamelessPlayer(this.audiences.player(bukkitPlayer), bukkitPlayer);
 	}
 
 	@Override
-	public @Nullable NamelessPlayer player(@NonNull UUID uuid) {
+	public NamelessPlayer player(UUID uuid) {
 		return bukkitToNamelessPlayer(Bukkit.getPlayer(uuid));
 	}
 
 	@Override
-	public @Nullable NamelessPlayer playerByUsername(@NonNull String username) {
+	public NamelessPlayer playerByUsername(String username) {
 		return bukkitToNamelessPlayer(Bukkit.getPlayerExact(username));
 	}
 
 	@Override
-	public @NonNull Collection<@NonNull NamelessPlayer> onlinePlayers() {
+	public Collection<NamelessPlayer> onlinePlayers() {
 		return Bukkit.getOnlinePlayers().stream()
 				.map(p -> new BukkitNamelessPlayer(this.audiences.player(p), p))
 				.collect(Collectors.toUnmodifiableList());

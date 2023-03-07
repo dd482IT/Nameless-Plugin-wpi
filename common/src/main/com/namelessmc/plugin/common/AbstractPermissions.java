@@ -17,21 +17,21 @@ public abstract class AbstractPermissions
 
 	public abstract Set<String> getGroups();
 
-	public abstract @Nullable Set<String> getPlayerGroups(final @NonNull NamelessPlayer player);
+	public abstract Set<String> getPlayerGroups(final NamelessPlayer player);
 
-	private @NonNull JsonArray toJsonArray(final @NonNull Collection<String> coll) {
+	private JsonArray toJsonArray(final Collection<String> coll) {
 		final JsonArray json = new JsonArray(coll.size());
 		coll.stream().map(JsonPrimitive::new).forEach(json::add);
 		return json;
 	}
 
 	@Override
-	public void addInfoToJson(@NonNull JsonObject json) {
+	public void addInfoToJson(JsonObject json) {
 		json.add("groups", this.toJsonArray(this.getGroups()));
 	}
 
 	@Override
-	public void addInfoToJson(@NonNull JsonObject json, @NonNull NamelessPlayer player) {
+	public void addInfoToJson(JsonObject json, NamelessPlayer player) {
 		final Collection<String> groups = this.getPlayerGroups(player);
 		if (groups != null) {
 			json.add("groups", this.toJsonArray(groups));
